@@ -5,6 +5,7 @@
 .idea/
 bin/
 obj/
+.user
 
 
 # User-specific stuff
