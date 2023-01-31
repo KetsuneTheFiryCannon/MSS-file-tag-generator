@@ -4,11 +4,6 @@ namespace MSS_key_generator.Backend.TLV;
 
 public class TagLengthValue : TagValue
 {
-    public TagLengthValue(byte tag, byte[] length, Value value) : base(tag, value)
-    {
-        Length = length;
-    }
-
     public TagLengthValue(byte tag, byte[] length, byte[] value) : base(tag, value)
     {
         Length = length;

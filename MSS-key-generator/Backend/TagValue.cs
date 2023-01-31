@@ -2,12 +2,6 @@
 
 public class TagValue : IHexConvertable
 {
-    public TagValue(byte tag, Value value)
-    {
-        Tag = tag;
-        Value = value;
-    }
-
     public TagValue(byte tag, byte[] value)
     {
         Tag = tag;
