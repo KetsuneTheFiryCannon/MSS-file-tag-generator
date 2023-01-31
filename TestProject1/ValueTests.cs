@@ -39,4 +39,16 @@ public class ValueTests
         
         Assert.That(hexValue, Is.EqualTo(dataHex));
     }
+    
+    [Test]
+    public void ValueComputeLength_0x42_1()
+    {
+        const int expectedLength = 1;
+        const byte dataByte = 0x42;
+
+        var value = new Value(new[] { dataByte });
+        var computedLength = value.ComputeLength();
+
+        Assert.That(computedLength, Is.EqualTo(expectedLength));
+    }
 }

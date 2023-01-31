@@ -2,7 +2,7 @@
 
 namespace MSS_key_generator.Backend;
 
-public class Value : IHexConvertable
+public class Value : IHexConvertable, IValueLengthComputable
 {
     public Value(byte[] byteContent)
     {
@@ -26,5 +26,11 @@ public class Value : IHexConvertable
             : Convert.ToHexString(ByteContent!);
 
         return hexString;
+    }
+
+    public int ComputeLength()
+    {
+        // TODO: count TagContent length too
+        return ByteContent!.Length;
     }
 }
