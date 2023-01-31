@@ -17,43 +17,44 @@ public class KeyGenerator
 
     public string generateCreateKey(string sizeValue, string nameValue, string accessValue)
     {
-        string hexValue;
-        
-        string createTag = "00e0000";
-        string patternTag = "62"; 
-        string sizeTag = "80";
-        string fileTypeTagAndValue = "820101";
-        string fileNameTag = "83";
-        string stringOperationTag = "8606";
-
-        string valueFrom80ToAccess =
-            sizeTag +
-            sizeValue +
-            fileTypeTagAndValue +
-            fileNameTag +
-            findLengthInBytes()
-
-        if (sizeTLV.Length < 9)
-        {
-            hexValue = "0" + string.Format("{0:x}", sizeTLV);   
-        }
-        else
-        {
-            hexValue = string.Format("{0:x}", sizeTLV);
-        }
-            
-        sizeTLV = hexValue + sizeTLV;
-        
-        if (sizeTLV.Length < 9)
-        {
-            hexValue = "0" + string.Format("{0:x}", sizeTLV);   
-        }
-        else
-        {
-            hexValue = string.Format("{0:x}", sizeTLV);
-        }
-        
-        return createTag + hexValue + sizeTLV;
+        return "";
+        // string hexValue;
+        //
+        // string createTag = "00e0000";
+        // string patternTag = "62"; 
+        // string sizeTag = "80";
+        // string fileTypeTagAndValue = "820101";
+        // string fileNameTag = "83";
+        // string stringOperationTag = "8606";
+        //
+        // string valueFrom80ToAccess =
+        //     sizeTag +
+        //     sizeValue +
+        //     fileTypeTagAndValue +
+        //     fileNameTag +
+        //     findLengthInBytes()
+        //
+        // if (sizeTLV.Length < 9)
+        // {
+        //     hexValue = "0" + string.Format("{0:x}", sizeTLV);   
+        // }
+        // else
+        // {
+        //     hexValue = string.Format("{0:x}", sizeTLV);
+        // }
+        //     
+        // sizeTLV = hexValue + sizeTLV;
+        //
+        // if (sizeTLV.Length < 9)
+        // {
+        //     hexValue = "0" + string.Format("{0:x}", sizeTLV);   
+        // }
+        // else
+        // {
+        //     hexValue = string.Format("{0:x}", sizeTLV);
+        // }
+        //
+        // return createTag + hexValue + sizeTLV;
     }
 
     public string findHexValue(string value)
@@ -63,7 +64,7 @@ public class KeyGenerator
     
     public string findLengthInBytes(string value)
     {
-        if()
+        // if()
         return "";
     }
 }
