@@ -1,6 +1,6 @@
 ﻿namespace MSS_key_generator.Backend;
 
-public class TagValue : IHexConvertable
+public class TagValue : IHexConvertable, IValueLengthComputable
 {
     public TagValue(byte tag, byte[] value)
     {
@@ -24,5 +24,10 @@ public class TagValue : IHexConvertable
         var hexValue = Value.ToHex();
         var hexString = string.Concat(hexTag, hexValue);
         return hexString;
+    }
+
+    public virtual int ComputeLength()
+    {
+        return Value.ComputeLength() + 1;
     }
 }

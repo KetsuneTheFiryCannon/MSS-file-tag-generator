@@ -30,7 +30,9 @@ public class Value : IHexConvertable, IValueLengthComputable
 
     public int ComputeLength()
     {
-        // TODO: count TagContent length too
-        return ByteContent!.Length;
+        var computedLength = IsNested
+            ? TagContent!.ComputeLength()
+            : ByteContent!.Length;
+        return computedLength;
     }
 }
