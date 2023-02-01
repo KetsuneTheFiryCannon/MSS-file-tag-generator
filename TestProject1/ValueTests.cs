@@ -53,9 +53,9 @@ public class ValueTests
     }
 
     [Test]
-    public void ValueComputeLength_0x422113_3()
+    public void ComputeLength_0x422113_3()
     {
-        const int expectedLength = 1;
+        const int expectedLength = 3;
         var dataBytes = new byte[] {0x42, 0x21, 0x13};
 
         var value = new Value(dataBytes);
