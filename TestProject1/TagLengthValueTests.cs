@@ -6,6 +6,50 @@ namespace TestProject1;
 public class TagLengthValueTests
 {
     [Test]
+    public void ToHex_Tag0x80Value0x42_800142()
+    {
+        const string expectedHex = "800142";
+        const byte tagByte = 0x80;
+        const byte valueByte = 0x42;
+
+        var tagLengthValue = new TagLengthValue(tagByte, new[] { valueByte });
+        var actualHex = tagLengthValue.ToHex();
+
+        Assert.That(actualHex, Is.EqualTo(expectedHex));
+    }
+
+    [Test]
+    public void ToHex_Tag0x80ValueTV0x4221_80024221()
+    {
+        const string expectedHex = "80024221";
+        const byte tagByte = 0x80;
+        const byte innerTagByte = 0x42;
+        const byte innerValueByte = 0x21;
+
+        var innerTagValue = new TagValue(innerTagByte, new[] { innerValueByte });
+        var tagLengthValue = new TagLengthValue(tagByte, innerTagValue);
+        var actualHex = tagLengthValue.ToHex();
+
+        Assert.That(actualHex, Is.EqualTo(expectedHex));
+    }
+
+    [Test]
+    public void ToHex_Tag0x80ValueTLV0x4221_8003420121()
+    {
+        const string expectedHex = "8003420121";
+        const byte tagByte = 0x80;
+        const byte innerTagByte = 0x42;
+        const byte innerValueByte = 0x21;
+
+        var innerTagLengthValue = new TagLengthValue(innerTagByte, new[] { innerValueByte });
+        var tagLengthValue = new TagLengthValue(tagByte, innerTagLengthValue);
+        var actualHex = tagLengthValue.ToHex();
+
+        Assert.That(actualHex, Is.EqualTo(expectedHex));
+    }
+
+
+    [Test]
     public void Length_Tag0x80Value0x42_1()
     {
         const int expectedValueLength = 1;
@@ -14,10 +58,10 @@ public class TagLengthValueTests
 
         var tagLengthValue = new TagLengthValue(tagByte, new[] { valueByte });
         var actualLength = tagLengthValue.Length;
-        
+
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));
     }
-    
+
     [Test]
     public void Length_Tag0x80ValueTV0x4221_2()
     {
@@ -29,10 +73,10 @@ public class TagLengthValueTests
         var innerTagValue = new TagValue(innerTagByte, new[] { innerValueByte });
         var tagLengthValue = new TagLengthValue(tagByte, innerTagValue);
         var actualLength = tagLengthValue.Length;
-        
+
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));
     }
-    
+
     [Test]
     public void Length_Tag0x80ValueTLV0x4221_3()
     {
@@ -44,9 +88,10 @@ public class TagLengthValueTests
         var innerTagLengthValue = new TagLengthValue(innerTagByte, new[] { innerValueByte });
         var tagLengthValue = new TagLengthValue(tagByte, innerTagLengthValue);
         var actualLength = tagLengthValue.Length;
-        
+
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));
     }
+
     [Test]
     public void ComputeLength_Tag0x80Value0x42_3()
     {
@@ -56,10 +101,10 @@ public class TagLengthValueTests
 
         var tagLengthValue = new TagLengthValue(tagByte, new[] { valueByte });
         var actualLength = tagLengthValue.ComputeLength();
-        
+
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));
     }
-    
+
     [Test]
     public void ComputeLength_Tag0x80ValueTV0x4221_4()
     {
@@ -71,10 +116,10 @@ public class TagLengthValueTests
         var innerTagValue = new TagValue(innerTagByte, new[] { innerValueByte });
         var tagLengthValue = new TagLengthValue(tagByte, innerTagValue);
         var actualLength = tagLengthValue.ComputeLength();
-        
+
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));
     }
-    
+
     [Test]
     public void ComputeLength_Tag0x80ValueTLV0x4221_5()
     {
@@ -86,7 +131,7 @@ public class TagLengthValueTests
         var innerTagLengthValue = new TagLengthValue(innerTagByte, new[] { innerValueByte });
         var tagLengthValue = new TagLengthValue(tagByte, innerTagLengthValue);
         var actualLength = tagLengthValue.ComputeLength();
-        
+
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));
     }
 }
