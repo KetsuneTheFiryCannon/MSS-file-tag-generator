@@ -5,7 +5,7 @@ namespace TestProject1;
 public class TagValueTests
 {
     [Test]
-    public void TagValueToHex_0x80010a_80010a()
+    public void ToHex_0x80010a_80010a()
     {
         const byte tag = 0x80;
         var value = new byte[] { 0x01, 0x0a };
@@ -18,7 +18,7 @@ public class TagValueTests
     }
 
     [Test]
-    public void TagValueToHex_0x80TV82010a_80010a()
+    public void ToHex_0x80TV82010a_80010a()
     {
         const byte tag = 0x80;
         var value = new TagValue(0x82, new byte[] { 0x01, 0x0a });
@@ -31,7 +31,7 @@ public class TagValueTests
     }
 
     [Test]
-    public void TagValueComputeLength_TV0x8042_2()
+    public void ComputeLength_TV0x8042_2()
     {
         const int expectedLength = 2;
         const byte tagByte = 0x80;
@@ -44,7 +44,7 @@ public class TagValueTests
     }
 
     [Test]
-    public void TagValueComputeLength_TV0x80TV0x8142_2()
+    public void ComputeLength_TV0x80TV0x8142_2()
     {
         const int expectedLength = 3;
         const byte tagByte = 0x80;

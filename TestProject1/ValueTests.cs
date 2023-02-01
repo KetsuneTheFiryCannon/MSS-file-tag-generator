@@ -5,7 +5,7 @@ namespace TestProject1;
 public class ValueTests
 {
     [Test]
-    public void ValueToHex_0x00_00()
+    public void ToHex_0x00_00()
     {
         const byte dataByte = 0x00;
         const string dataHex = "00";
@@ -17,7 +17,7 @@ public class ValueTests
     }
 
     [Test]
-    public void ValueToHex_0xFA_FA()
+    public void ToHex_0xFA_FA()
     {
         const byte dataByte = 0xFA;
         const string dataHex = "FA";
@@ -29,7 +29,7 @@ public class ValueTests
     }
 
     [Test]
-    public void ValueToHex_72_48()
+    public void ToHex_72_48()
     {
         const byte dataByte = 72;
         const string dataHex = "48";
@@ -41,7 +41,7 @@ public class ValueTests
     }
 
     [Test]
-    public void ValueComputeLength_0x42_1()
+    public void ComputeLength_0x42_1()
     {
         const int expectedLength = 1;
         const byte dataByte = 0x42;

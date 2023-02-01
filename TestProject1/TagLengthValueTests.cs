@@ -6,7 +6,7 @@ namespace TestProject1;
 public class TagLengthValueTests
 {
     [Test]
-    public void TagLengthValueLength_Tag0x80Value0x42_1()
+    public void Length_Tag0x80Value0x42_1()
     {
         const int expectedValueLength = 1;
         const byte tagByte = 0x80;
@@ -19,7 +19,7 @@ public class TagLengthValueTests
     }
     
     [Test]
-    public void TagLengthValueLength_Tag0x80ValueTV0x4221_2()
+    public void Length_Tag0x80ValueTV0x4221_2()
     {
         const int expectedValueLength = 2;
         const byte tagByte = 0x80;
@@ -34,7 +34,7 @@ public class TagLengthValueTests
     }
     
     [Test]
-    public void TagLengthValueLength_Tag0x80ValueTLV0x4221_3()
+    public void Length_Tag0x80ValueTLV0x4221_3()
     {
         const int expectedValueLength = 3;
         const byte tagByte = 0x80;
@@ -48,7 +48,7 @@ public class TagLengthValueTests
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));
     }
     [Test]
-    public void TagLengthValueComputeLength_Tag0x80Value0x42_3()
+    public void ComputeLength_Tag0x80Value0x42_3()
     {
         const int expectedValueLength = 3;
         const byte tagByte = 0x80;
@@ -61,7 +61,7 @@ public class TagLengthValueTests
     }
     
     [Test]
-    public void TagLengthValueComputeLength_Tag0x80ValueTV0x4221_4()
+    public void ComputeLength_Tag0x80ValueTV0x4221_4()
     {
         const int expectedValueLength = 4;
         const byte tagByte = 0x80;
@@ -76,7 +76,7 @@ public class TagLengthValueTests
     }
     
     [Test]
-    public void TagLengthValueComputeLength_Tag0x80ValueTLV0x4221_5()
+    public void ComputeLength_Tag0x80ValueTLV0x4221_5()
     {
         const int expectedValueLength = 5;
         const byte tagByte = 0x80;
