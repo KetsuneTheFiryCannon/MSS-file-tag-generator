@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MSS_key_generator.Backend.TLV;
+﻿namespace MSS_key_generator.Backend;
 
 public class TagLengthValue : TagValue
 {
