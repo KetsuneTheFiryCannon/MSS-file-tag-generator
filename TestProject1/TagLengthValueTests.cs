@@ -48,6 +48,19 @@ public class TagLengthValueTests
         Assert.That(actualHex, Is.EqualTo(expectedHex));
     }
 
+    [Test]
+    public void ToHex_Tag0x80ValueArrayTLV_800870021001021aa1()
+    {
+        const string expectedHex = "80087002100180021AA1";
+        const byte tagByte = 0x80;
+        var innerTlv1 = new TagLengthValue(0x70, new byte[] { 0x10, 0x01 });
+        var innerTlv2 = new TagLengthValue(0x80, new byte[] { 0x1a, 0xa1 });
+
+        var tagLengthValue = new TagLengthValue(tagByte, new TagValue[] { innerTlv1, innerTlv2 });
+        var actualHex = tagLengthValue.ToHex();
+
+        Assert.That(actualHex, Is.EqualTo(expectedHex));
+    }
 
     [Test]
     public void Length_Tag0x80Value0x42_1()
@@ -93,6 +106,20 @@ public class TagLengthValueTests
     }
 
     [Test]
+    public void Length_Tag0x80ValueArrayTLV_8()
+    {
+        const int expectedLength = 8;
+        const byte tagByte = 0x80;
+        var innerTlv1 = new TagLengthValue(0x70, new byte[] { 0x10, 0x01 });
+        var innerTlv2 = new TagLengthValue(0x80, new byte[] { 0x1a, 0xa1 });
+
+        var tagLengthValue = new TagLengthValue(tagByte, new TagValue[] { innerTlv1, innerTlv2 });
+        var actualLength = tagLengthValue.Length;
+
+        Assert.That(actualLength, Is.EqualTo(expectedLength));
+    }
+
+    [Test]
     public void ComputeLength_Tag0x80Value0x42_3()
     {
         const int expectedValueLength = 3;
@@ -130,6 +157,20 @@ public class TagLengthValueTests
 
         var innerTagLengthValue = new TagLengthValue(innerTagByte, new[] { innerValueByte });
         var tagLengthValue = new TagLengthValue(tagByte, innerTagLengthValue);
+        var actualLength = tagLengthValue.ComputeLength();
+
+        Assert.That(actualLength, Is.EqualTo(expectedValueLength));
+    }
+
+    [Test]
+    public void ComputeLength_Tag0x80ValueArrayTLV_10()
+    {
+        const int expectedValueLength = 10;
+        const byte tagByte = 0x80;
+        var innerTlv1 = new TagLengthValue(0x70, new byte[] { 0x10, 0x01 });
+        var innerTlv2 = new TagLengthValue(0x80, new byte[] { 0x1a, 0xa1 });
+
+        var tagLengthValue = new TagLengthValue(tagByte, new TagValue[] { innerTlv1, innerTlv2 });
         var actualLength = tagLengthValue.ComputeLength();
 
         Assert.That(actualLength, Is.EqualTo(expectedValueLength));

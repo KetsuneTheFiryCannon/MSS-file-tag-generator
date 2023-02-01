@@ -12,6 +12,10 @@ public class TagLengthValue : TagValue
     {
     }
 
+    public TagLengthValue(byte tag, TagValue[] value) : base(tag, value)
+    {
+    }
+
     public int Length => Value.ComputeLength();
 
     public override string ToHex()

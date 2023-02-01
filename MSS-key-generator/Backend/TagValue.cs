@@ -2,21 +2,28 @@
 
 public class TagValue : IHexConvertable, IValueLengthComputable
 {
-    public TagValue(byte tag, byte[] value)
+    private TagValue(byte tag)
     {
         Tag = tag;
+    }
+
+    public TagValue(byte tag, byte[] value) : this(tag)
+    {
         Value = new Value(value);
     }
 
-    public TagValue(byte tag, TagValue value)
+    public TagValue(byte tag, TagValue[] value) : this(tag)
     {
-        Tag = tag;
         Value = new Value(value);
+    }
+
+    public TagValue(byte tag, TagValue value) : this(tag, new[] { value })
+    {
     }
 
     public byte Tag { get; }
 
-    public Value Value { get; }
+    public Value Value { get; } = null!;
 
     public virtual string ToHex()
     {
