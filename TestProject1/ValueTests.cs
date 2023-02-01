@@ -9,13 +9,13 @@ public class ValueTests
     {
         const byte dataByte = 0x00;
         const string dataHex = "00";
- 
+
         var value = new Value(new[] { dataByte });
         var hexValue = value.ToHex();
-        
+
         Assert.That(hexValue, Is.EqualTo(dataHex));
     }
-    
+
     [Test]
     public void ValueToHex_0xFA_FA()
     {
@@ -24,10 +24,10 @@ public class ValueTests
 
         var value = new Value(new[] { dataByte });
         var hexValue = value.ToHex();
-        
+
         Assert.That(hexValue, Is.EqualTo(dataHex));
     }
-    
+
     [Test]
     public void ValueToHex_72_48()
     {
@@ -36,10 +36,10 @@ public class ValueTests
 
         var value = new Value(new[] { dataByte });
         var hexValue = value.ToHex();
-        
+
         Assert.That(hexValue, Is.EqualTo(dataHex));
     }
-    
+
     [Test]
     public void ValueComputeLength_0x42_1()
     {
@@ -47,6 +47,18 @@ public class ValueTests
         const byte dataByte = 0x42;
 
         var value = new Value(new[] { dataByte });
+        var computedLength = value.ComputeLength();
+
+        Assert.That(computedLength, Is.EqualTo(expectedLength));
+    }
+
+    [Test]
+    public void ValueComputeLength_0x422113_3()
+    {
+        const int expectedLength = 1;
+        var dataBytes = new byte[] {0x42, 0x21, 0x13};
+
+        var value = new Value(dataBytes);
         var computedLength = value.ComputeLength();
 
         Assert.That(computedLength, Is.EqualTo(expectedLength));
