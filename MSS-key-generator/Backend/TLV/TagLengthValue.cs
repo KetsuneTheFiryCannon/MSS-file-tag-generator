@@ -22,4 +22,9 @@ public class TagLengthValue : TagValue
         var hexString = string.Concat(hexTag, hexLength, hexValue);
         return hexString;
     }
+
+    public override int ComputeLength()
+    {
+        return Length + 2;
+    }
 }
