@@ -1,5 +1,3 @@
-using System;
-
 namespace MSS_key_generator.Backend;
 
 public static class IntToByteExtensions
