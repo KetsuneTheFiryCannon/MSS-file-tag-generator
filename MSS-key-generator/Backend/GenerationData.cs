@@ -5,6 +5,8 @@ public class GenerationData
     public ApduCommand ApduCommand { get; }
     public DateTime GenerationDate { get; }
 
+    public string Output => ApduCommand.ToHex();
+
     public GenerationData(ApduCommand command)
     {
         ApduCommand = command;

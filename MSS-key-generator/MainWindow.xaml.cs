@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace MSS_key_generator;
 
@@ -13,6 +14,12 @@ public partial class MainWindow : Window
 
         FileTypeComboBox.ItemsSource = Enum.GetValues<FileType>();
         FileTypeComboBox.SelectedIndex = 0;
+#if DEBUG
+        var list = new List<GenerationData>();
+        var item = _generator.GenerateCreateFile("s2", FileType.DF_MF, 100);
+        list.Add(item);
+        LastCommandsListView.ItemsSource = list;
+#endif
     }
 
     private void GenerateOnClick(object sender, RoutedEventArgs e)
@@ -37,7 +44,7 @@ public partial class MainWindow : Window
     {
         var box = (TextBox)sender;
         if (box.Text is { Length: < 3 }) return;
-        
+
         box.Undo();
         MessageBox.Show("Имя файла должно состоять максимум из 2 символов");
     }
