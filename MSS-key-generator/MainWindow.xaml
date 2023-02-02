@@ -13,26 +13,69 @@
             <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="30" />
         </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0 0 0 3" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
         <Style TargetType="TextBox">
             <Setter Property="Width" Value="150" />
             <Setter Property="Height" Value="30" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="30" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="5 10" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
     </Window.Resources>
-    <StackPanel>
-        <TextBlock Text="Генератор APDU-команд для smart card" FontSize="16" FontWeight="Black"
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="Генератор APDU-команд для smart card"
+                   FontSize="16" FontWeight="Black" Margin="30"
                    HorizontalAlignment="Center" VerticalAlignment="Top" />
-        <Button Content="Открыть лог" Click="OpenLogOnClick" />
-        <TextBlock Text="Имя файла" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBox Name="FileNameTextBox" TextChanged="FileNameOnTextChanged" />
-        <TextBlock Text="Тип файла" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <ComboBox Name="FileTypeComboBox" />
-        <TextBlock Text="Размер файла" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBox Name="FileSizeTextBox" />
-        <Button Content="Сгенерировать" Click="GenerateOnClick" />
 
-    </StackPanel>
+        <Border DockPanel.Dock="Left" BorderBrush="Gray" BorderThickness="2"
+                Width="200" Margin="20 0" Padding="5"
+                HorizontalAlignment="Left" VerticalAlignment="Top">
+            <UniformGrid Columns="1" Rows="4" Margin="0 10">
+                <StackPanel>
+                    <TextBlock Text="Имя файла" />
+                    <TextBox Name="FileNameTextBox" TextChanged="FileNameOnTextChanged" />
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Тип файла" />
+                    <ComboBox Name="FileTypeComboBox" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Размер файла" />
+                    <TextBox Name="FileSizeTextBox" />
+                </StackPanel>
+
+                <Button Content="Сгенерировать" Click="GenerateOnClick" />
+            </UniformGrid>
+        </Border>
+
+        <DockPanel Dock="Top" Margin="5">
+            <TextBlock DockPanel.Dock="Left" Text="Последние сгенерированные команды"
+                       Margin="5 0 0 0" />
+            <Button Content="Открыть лог" Click="OpenLogOnClick" />
+        </DockPanel>
+        <ListView Margin="0 0 10 20">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ApduCommand}" FontSize="16" TextWrapping="Wrap" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </DockPanel>
 </Window>
