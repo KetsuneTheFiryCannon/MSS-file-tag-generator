@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
 namespace MSS_key_generator;
@@ -8,17 +8,18 @@ public partial class MainWindow : Window
     private readonly Logger _logger = new();
     private readonly KeyGenerator _generator = new();
 
+    public ObservableCollection<GenerationData> GeneratedData { get; } = new();
+
     public MainWindow()
     {
         InitializeComponent();
+        DataContext = this;
 
         FileTypeComboBox.ItemsSource = Enum.GetValues<FileType>();
         FileTypeComboBox.SelectedIndex = 0;
 #if DEBUG
-        var list = new List<GenerationData>();
         var item = _generator.GenerateCreateFile("s2", FileType.DF_MF, 100);
-        list.Add(item);
-        LastCommandsListView.ItemsSource = list;
+        GeneratedData.Add(item);
 #endif
     }
 
@@ -32,6 +33,7 @@ public partial class MainWindow : Window
         }
 
         var data = _generator.GenerateCreateFile(FileNameTextBox.Text, (FileType)FileTypeComboBox.SelectedItem, size);
+        GeneratedData.Add(data);
         _logger.Log(data.ToString());
     }
 
