@@ -5,19 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MSS_key_generator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/> 
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-    </Grid>
+        Height="500" Width="600" ResizeMode="NoResize"
+        Title="MainWindow">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <TextBlock Text="Генератор APDU-команд для smart card" FontSize="16" FontWeight="Black"
+                   HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Button Content="Открыть лог" Click="OpenLogOnClick" />
+        <TextBlock Text="Имя файла" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Name="FileNameTextBox" TextChanged="FileNameOnTextChanged" />
+        <TextBlock Text="Тип файла" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <ComboBox Name="FileTypeComboBox" />
+        <TextBlock Text="Размер файла" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Name="FileSizeTextBox" />
+        <Button Content="Сгенерировать" Click="GenerateOnClick" />
+
+    </StackPanel>
 </Window>
